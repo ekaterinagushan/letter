@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Самописец</title>
+
+
+  <style>
+      html, body{
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background: #FFD400;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+      height: 500px;
+      width: 500px;
+      margin-top: 40px;
+      margin-left: 50px;
+    }
+    /* #search-box{
+        display: inline-block;
+        position: relative;
+        border-radius: 50px;
+        border: 5px solid #ffffff;
+    }
+    #search-box span {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: -13px;
+      right: -15px;
+      transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
+    }
+    #search-box span:before, #search-box span:after {
+      content: '';
+      height: 25px;
+      border-left: solid 5px #ffffff;
+      position: absolute;
+      transform: rotate(-45deg);
+    }
+    #search-box span:after {
+      transform: rotate(45deg);
+      opacity: 0;
+      top: -20px;
+      right: -10px;
+      transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
+    }
+    input {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        width: 54px;
+        height: 54px;
+        padding: 5px 40px 5px 10px;
+        border: none;
+        box-sizing: border-box;
+        border-radius: 50px;
+        background: #FFD400;
+        transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 600ms;
+        color: #ccc;
+    }
+    #search-box input:focus {
+        outline: none;
+    }
+    #search-box input:focus, #search-box input:not(:placeholder-shown) {
+        width: 300px;
+        transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
+    }
+    #search-box input:focus + span, #search-box input:not(:placeholder-shown) + span {
+        bottom: 13px;
+        right: 10px;
+        transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
+    }
+    #search-box input:focus + span:after, #search-box input:not(:placeholder-shown) + span:after {
+      top: 0;
+      right: 10px;
+      opacity: 1;
+      transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
+    } */
+
+  </style>
+</head>
+<body>
+
+  <!-- <div id="search-box">
+      <input type="text" placeholder=" " /><span></span>
+  </div> -->
+  <!-- <script>
+
+
+  'use strict'
+  var searchBox = document.querySelectorAll('.search-box input[type="text"] + span')
+
+  searchBox.forEach((elm) => {
+  elm.addEventListener('click', () => {
+  elm.previousElementSibling.value = '';
+  })
+ })
+  </script> -->
+
+
+
+  <div class='content'></div>
+  <script src="./jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+     var p = $('.content');
+     p.text('');
+
+     inc(p);
+    });
+
+    var text = `Холон-магазин человеческих качеств, предоставляющий возможность потребителю приобрести качества, которые у него отсутсmвуют в необходимом ему количестве. Для примера, возьмем человека, который не уверен в себе. Ему будет трудно выступать перед людьми, находится в обществе. Думаю ему и самому не особо приятно будет постоянно чувствовать эту неуверенность. Представим, что он справлялся с ней какое время, и тут перед ним стоит задача выступить перед людьми с проектом или презентацией. В этом случае, он начнет уворачиваться от данного мероприятия. Однако, приобретя качетсво "уверенность" от "Холон", он без преград сможет не только изменить свое состояние и отношение к выступлениям, но и станет уверенным в себе человем, что в дальнейшем ему поможет в жизни. И это не единсвтенный пример, где могут понадобиться качества от "Холон".
+
+Для точного определения недостатка качеств перед покупкой, потребитель проходит диагностику, результатом которого, становистя список качеств, которые выявлены в нем в малом количестве или вовсе не выявлены. `;
+
+    var i = 0;
+    var j = 0;
+
+    function inc(p) {
+      var interval = .12;
+      var array = text.split(/[\{\}]/); // Split on embraces
+
+      if (i < array.length) {
+        const character = array[i].charAt(j) === '<' ? '<br/>' : array[i].charAt(j)
+        p.append(character);
+
+        console.log(array[i].charAt(j))
+
+        if (j == array[i].length -1 && typeof array[i + 1] !== "undefined") {
+          interval = array[i + 1];
+          i += 2;
+          j = 0;
+        }
+
+        j++;
+        setTimeout(function () { inc(p); }, interval*500);
+      }
+    }
+
+  </script>
+
+  </body>
+
+</html>
